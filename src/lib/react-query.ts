@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { calculateExponentialBackoff } from "./utils";
+import { calculateExponentialBackoff } from "./api";
 
 // API 에러 타입 정의 (Axios 에러 타입)
 interface ApiError {
