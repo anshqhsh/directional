@@ -5,6 +5,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Separator } from "../ui/separator";
+import { Spinner } from "@/components/ui/spinner";
 import { CATEGORY_OPTIONS_WITH_ALL } from "@/constants/posts";
 import { formatDate } from "@/lib/date";
 import { usePostDetail } from "@/feature/posts/hooks";
@@ -38,13 +39,15 @@ export const PostDetailModal = ({
       <DialogContent className="max-w-3xl max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle className="text-left">
-            {isLoading && !postProp ? "로딩 중..." : post?.title || ""}
+            {isLoading && !postProp ? "" : post?.title || ""}
           </DialogTitle>
         </DialogHeader>
 
         <div className="flex-1 overflow-y-auto min-h-0">
           {isLoading && !postProp ? (
-            <div className="text-center py-8">로딩 중...</div>
+            <div className="flex items-center justify-center py-8">
+              <Spinner className="size-6" />
+            </div>
           ) : post ? (
             <div className="space-y-4">
               {/* 카테고리 */}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { usePosts, useDeletePost } from "@/feature/posts/hooks";
 import { PostFormModal } from "@/components/posts/PostFormModal";
 import { PostDetailModal } from "@/components/posts/PostDetailModal";
+import { Spinner } from "@/components/ui/spinner";
 import { usePostSearch } from "./hooks/usePostSearch";
 import { usePostPagination } from "./hooks/usePostPagination";
 import { usePostModal } from "./hooks/usePostModal";
@@ -82,7 +83,11 @@ export const PostsBoard = () => {
         onCreateClick={handleCreate}
       />
 
-      {isLoading && <div className="text-center py-8">로딩 중...</div>}
+      {isLoading && (
+        <div className="flex items-center justify-center py-8">
+          <Spinner className="size-6" />
+        </div>
+      )}
       {error && (
         <div className="text-center py-8 text-red-500">
           에러가 발생했습니다.
