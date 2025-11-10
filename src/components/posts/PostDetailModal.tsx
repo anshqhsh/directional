@@ -8,23 +8,28 @@ import { Separator } from "../ui/separator";
 import { CATEGORY_OPTIONS_WITH_ALL } from "@/constants/posts";
 import { formatDate } from "@/lib/date";
 import { usePostDetail } from "@/feature/posts/hooks";
+import type { Post } from "@/feature/shared/types";
 
 interface PostDetailModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  postId: string | null;
+  postId?: string | null;
+  post?: Post | null;
 }
 
 export const PostDetailModal = ({
   open,
   onOpenChange,
   postId,
+  post: postProp,
 }: PostDetailModalProps) => {
-  const { data: post, isLoading } = usePostDetail(postId || "", {
-    enabled: open && !!postId,
+  const { data: postData, isLoading } = usePostDetail(postId || "", {
+    enabled: open && !!postId && !postProp,
   });
 
-  if (!open || !postId) {
+  const post = postProp || postData;
+
+  if (!open || (!postId && !postProp)) {
     return null;
   }
 
@@ -33,12 +38,12 @@ export const PostDetailModal = ({
       <DialogContent className="max-w-3xl max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle className="text-left">
-            {isLoading ? "로딩 중..." : post?.title || ""}
+            {isLoading && !postProp ? "로딩 중..." : post?.title || ""}
           </DialogTitle>
         </DialogHeader>
 
         <div className="flex-1 overflow-y-auto min-h-0">
-          {isLoading ? (
+          {isLoading && !postProp ? (
             <div className="text-center py-8">로딩 중...</div>
           ) : post ? (
             <div className="space-y-4">
