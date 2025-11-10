@@ -11,7 +11,7 @@ export const QUERY_KEYS = {
   // posts
   POSTS: {
     ALL: ["posts"] as const,
-    LIST: ["posts", "list"] as const,
+    LIST: (params?: unknown) => ["posts", "list", params] as const,
     DETAIL: (id: string) => ["posts", id] as const,
   },
 
