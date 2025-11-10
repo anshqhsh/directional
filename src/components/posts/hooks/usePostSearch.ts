@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 
 export const usePostSearch = () => {
   const [params, setParams] = useState<GetPostsParams>({
-    limit: 3,
+    limit: 10,
     sort: "createdAt",
     order: "desc",
   });
@@ -63,7 +63,6 @@ export const usePostSearch = () => {
   };
 
   const limitOptions: { value: number; label: string }[] = [
-    { value: 3, label: "3" },
     { value: 10, label: "10" },
     { value: 20, label: "20" },
     { value: 50, label: "50" },

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { hasToken } from "@/lib/auth";
 import { ROUTES } from "@/constants/routes";
 import { MockPostsSection } from "@/components/posts/MockPostsSection";
+import { Button } from "@/components/ui/button";
 
 export const HomePage = () => {
   const isLoggedIn = hasToken();
@@ -19,19 +20,13 @@ export const HomePage = () => {
               게시글 작성, 조회, 수정, 삭제가 가능한 게시판입니다.
             </p>
             {isLoggedIn ? (
-              <Link
-                to={ROUTES.POSTS.path}
-                className="inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-              >
-                게시판으로 이동
-              </Link>
+              <Button asChild>
+                <Link to={ROUTES.POSTS.path}>게시판으로 이동</Link>
+              </Button>
             ) : (
-              <Link
-                to={ROUTES.LOGIN.path}
-                className="inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-              >
-                로그인 후 이용
-              </Link>
+              <Button asChild>
+                <Link to={ROUTES.LOGIN.path}>로그인 후 이용</Link>
+              </Button>
             )}
           </div>
 
@@ -41,14 +36,11 @@ export const HomePage = () => {
               데이터 시각화
             </h2>
             <p className="text-gray-600 mb-4">
-              다양한 차트로 데이터를 시각화합니다.
+              스택형 바 / 면적 차트 / 멀티 라인 차트
             </p>
-            <Link
-              to={ROUTES.CHARTS.path}
-              className="inline-block px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
-            >
-              차트 보기
-            </Link>
+            <Button asChild variant="default">
+              <Link to={ROUTES.CHARTS.path}>차트 보기</Link>
+            </Button>
           </div>
         </div>
 

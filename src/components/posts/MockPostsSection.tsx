@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Spinner } from "@/components/ui/spinner";
 import type { Post } from "@/feature/shared/types";
 
 export const MockPostsSection = () => {
@@ -54,7 +55,9 @@ export const MockPostsSection = () => {
           </div>
         </div>
         {isLoading ? (
-          <div className="text-center py-8">로딩 중...</div>
+          <div className="flex items-center justify-center py-8">
+            <Spinner className="size-6" />
+          </div>
         ) : mockPostsData && mockPostsData.items.length > 0 ? (
           <div className="overflow-x-auto">
             <PostList

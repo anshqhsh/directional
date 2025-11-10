@@ -1,12 +1,19 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { hasToken } from "@/lib/auth";
 import { LoginForm } from "@/components/loginform";
 import { ROUTES } from "@/constants/routes";
 
 export const LoginPage = () => {
-  // 이미 로그인되어 있으면 게시판으로 리다이렉트
-  if (hasToken()) {
-    return <Navigate to={ROUTES.POSTS.path} replace />;
+  const location = useLocation();
+  const token = hasToken();
+
+  // 이미 로그인되어 있으면 이전 페이지 또는 홈으로 리다이렉트
+  if (token) {
+    const from = (location.state as { from?: { pathname: string } })?.from
+      ?.pathname;
+    const redirectTo =
+      from && from !== ROUTES.LOGIN.path ? from : ROUTES.HOME.path;
+    return <Navigate to={redirectTo} replace />;
   }
 
   return (
