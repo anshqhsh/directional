@@ -11,7 +11,7 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: (data: LoginRequest) => authApi.login(data),
     onSuccess: (response) => {
-      // 토큰 저장
+      // 토큰 및 사용자 정보 저장
       setToken(response.token);
       // 인증 상태 캐시 업데이트
       queryClient.setQueryData(QUERY_KEYS.AUTH.LOGIN, response);
