@@ -7,11 +7,17 @@ import type {
 } from "../types";
 
 export const mockApi = {
-  getPosts: () => api.get<MockPostResponse>("/posts"),
+  getPosts: (count?: number) => {
+    const searchParams = new URLSearchParams();
+    if (count) searchParams.append("count", count.toString());
+    const queryString = searchParams.toString();
+    const url = queryString ? `/mock/posts?${queryString}` : "/mock/posts";
+    return api.get<MockPostResponse>(url);
+  },
   getCoffeeConsumption: () =>
-    api.get<MockCoffeeConsumptionResponse>("/coffee-consumption"),
+    api.get<MockCoffeeConsumptionResponse>("/mock/coffee-consumption"),
   getWeeklyMoodTrend: () =>
-    api.get<MockWeeklyMoodTrendResponse>("/weekly-mood-trend"),
+    api.get<MockWeeklyMoodTrendResponse>("/mock/weekly-mood-trend"),
   getTopCoffeeBrands: () =>
-    api.get<MockTopCoffeeBrandsResponse>("/top-coffee-brands"),
+    api.get<MockTopCoffeeBrandsResponse>("/mock/top-coffee-brands"),
 };
