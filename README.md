@@ -9,6 +9,12 @@ React 기반 웹 애플리케이션으로 게시판 기능과 데이터 시각�
 - Node.js 18 이상
 - pnpm (권장) 또는 npm, yarn
 
+### 배포
+
+**🌐 배포된 사이트:** [https://anshqhsh.github.io/directional/](https://anshqhsh.github.io/directional/)
+
+이 프로젝트는 GitHub Pages를 통해 배포되었습니다.
+
 ### 설치 및 실행
 
 ```bash
@@ -267,5 +273,3 @@ src/
 - **반응형 레이아웃** - 모바일부터 데스크톱까지 지원
 - **직관적인 네비게이션** - 명확한 라우팅 구조
 - **접근성 고려** - 키보드 네비게이션 및 ARIA 속성
-
-
