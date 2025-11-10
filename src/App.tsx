@@ -1,12 +1,7 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { RouteGuard } from "./components/RouteGuard";
+import { Layout } from "./components/Layout";
 import { ROUTES } from "./constants/routes";
 import "./App.css";
 import { HomePage } from "./pages/HomePage";
@@ -21,16 +16,35 @@ function App() {
         <Routes>
           <Route path={ROUTES.LOGIN.path} element={<LoginPage />} />
           <Route
+            path={ROUTES.HOME.path}
             element={
-              <ProtectedRoute>
-                <Outlet />
-              </ProtectedRoute>
+              <RouteGuard isAuthRequired={ROUTES.HOME.isAuthRequired}>
+                <Layout>
+                  <HomePage />
+                </Layout>
+              </RouteGuard>
             }
-          >
-            <Route path={ROUTES.HOME.path} element={<HomePage />} />
-            <Route path={ROUTES.POSTS.path} element={<PostsPage />} />
-            <Route path={ROUTES.CHARTS.path} element={<ChartsPage />} />
-          </Route>
+          />
+          <Route
+            path={ROUTES.POSTS.path}
+            element={
+              <RouteGuard isAuthRequired={ROUTES.POSTS.isAuthRequired}>
+                <Layout>
+                  <PostsPage />
+                </Layout>
+              </RouteGuard>
+            }
+          />
+          <Route
+            path={ROUTES.CHARTS.path}
+            element={
+              <RouteGuard isAuthRequired={ROUTES.CHARTS.isAuthRequired}>
+                <Layout>
+                  <ChartsPage />
+                </Layout>
+              </RouteGuard>
+            }
+          />
           {/* 404 */}
           <Route
             path="*"

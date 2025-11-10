@@ -19,6 +19,7 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -32,7 +33,7 @@ export function LoginForm({
     try {
       await loginMutation.mutateAsync({ email, password });
       // 로그인 성공 시 게시판으로 이동
-      navigate(ROUTES.POSTS.path);
+      navigate(ROUTES.HOME.path);
     } catch (err) {
       setError(err instanceof Error ? err.message : "로그인에 실패했습니다.");
     }

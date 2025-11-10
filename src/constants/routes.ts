@@ -17,7 +17,7 @@ export const ROUTES = {
   CHARTS: {
     path: "/charts",
     name: "Charts",
-    isAuthRequired: true,
+    isAuthRequired: false,
   },
   POSTS: {
     path: "/posts",

@@ -41,7 +41,7 @@ export const HomePage = () => {
               데이터 시각화
             </h2>
             <p className="text-gray-600 mb-4">
-              다양한 차트로 데이터를 시각화합니다.
+              스택형 바 / 면적 차트 / 멀티 라인 차트
             </p>
             <Link
               to={ROUTES.CHARTS.path}
