@@ -10,12 +10,12 @@ export interface MockPostResponse {
   count: number;
 }
 
-interface CoffeeTeam {
+export interface CoffeeTeam {
   team: string;
   series: CoffeeDataPoint[];
 }
 
-interface CoffeeDataPoint {
+export interface CoffeeDataPoint {
   cups: number; // min : 0
   bugs: number; // min : 0
   productivity: number; // min : 0 max : 100
